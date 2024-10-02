@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Billify {% endblock %}
+{% block content %}
+<div id="modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div id="dialog" class="modal-content" hx-target="this">
+        </div>
+    </div>
+</div>
+<div style="margin-top: 20px;">
+    <div class="card">
+        <header class="card-header">
+            <p class="card-header-title">
+                All Companies &nbsp;
+                <button class="button is-rounded is-info" hx-get="{% url 'create_company' %}" hx-target="#dialog">
+                    Create Company
+                </button>
+            </p>
+        </header>
+            <div class="cards-list" hx-trigger="load, companyListChanged from:body" hx-get="{% url 'company_list' %}" hx-target="this">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+    </div>
+</div>
+{% endblock %}
+{% block custom_js %}
+<script src="{% static 'js/dialog.js' %}"></script>
+{% endblock %}

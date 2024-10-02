@@ -1,0 +1,395 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+body, wrapper {
+   min-height:100vh;
+}
+
+.flex-fill {
+   flex:1 1 auto;
+}
+
+.login-page {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+.form-right i {
+    font-size: 100px;
+}
+
+/* Apply CSS to the outer container div */
+.container-div {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+/* Apply CSS to the first inner div */
+.logo-div {
+    margin-right: 20px;
+}
+
+/* Apply CSS to the second inner div */
+.title-div {
+    margin-right: 20px;
+}
+
+/* Apply CSS to the image within the first inner div */
+.logo-img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+/* Add this CSS to center the login form */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 50vh; /* Ensure the form takes up the full viewport height */
+}
+
+/* Style the form elements if needed */
+.login-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.login-container form {
+    width: 400px; /* Adjust the width as needed */
+}
+
+/* Add this CSS to center the signup form */
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+/* Style the form elements if needed */
+.signup-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.signup-container form {
+    width: 400px; /* Adjust the width as needed */
+}
+
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+.show {
+    visibility: visible !important; /* Show the snackbar */
+
+/* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+.errors {
+    color: red;
+    font-size: 14px;
+}
+
+/* Styles for company cards */
+.company-card {
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 1rem;
+    margin: 10px;
+     min-width: calc(33.333% - 20px);
+}
+
+/* Styles for company logos */
+.company-logo img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+}
+
+/* Styles for company name */
+.company-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-top: 1rem;
+}
+
+/* Styles for company description */
+.company-description {
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+/* Styles for company actions */
+.company-actions {
+  margin-top: 1rem;
+}
+
+.create-invoice {
+  background-color: #16a34a;
+  /* Blue background color */
+  color: #fff;
+  /* White text color */
+  font-weight: bold;
+  /* Bold font weight */
+  padding: 0.5rem 1rem;
+  /* Padding */
+  border-radius: 0.25rem;
+  /* Rounded corners */
+  cursor: pointer;
+  /* Pointer cursor on hover */
+    margin: 2px;
+}
+
+
+
+.create-invoice:hover {
+  background-color: #047857;
+  /* Darker blue background color on hover */
+}
+
+.view-invoices {
+  background-color: #007bff;
+  /* Blue background color */
+  color: #fff;
+  /* White text color */
+  font-weight: bold;
+  /* Bold font weight */
+  padding: 0.5rem 1rem;
+  /* Padding */
+  border-radius: 0.25rem;
+  /* Rounded corners */
+  cursor: pointer;
+  /* Pointer cursor on hover */
+    margin: 2px;
+}
+
+.view-invoices:hover {
+  background-color: #0056b3;
+  /* Darker blue background color on hover */
+}
+
+
+.delete-company {
+  background-color: #e53e3e;
+  /* Blue background color */
+  color: #fff;
+  /* White text color */
+  font-weight: bold;
+  /* Bold font weight */
+  padding: 0.5rem 1rem;
+  /* Padding */
+  border-radius: 0.25rem;
+  /* Rounded corners */
+  cursor: pointer;
+  /* Pointer cursor on hover */
+    margin: 2px;
+}
+
+.delete-company:hover {
+  background-color: #9b2c2c;
+  /* Darker blue background color on hover */
+}
+
+.edit-company {
+  background-color: #ecc94b;
+  /* Blue background color */
+  color: #fff;
+  /* White text color */
+  font-weight: bold;
+  /* Bold font weight */
+  padding: 0.5rem 1rem;
+  /* Padding */
+  border-radius: 0.25rem;
+  /* Rounded corners */
+  cursor: pointer;
+  /* Pointer cursor on hover */
+    margin: 2px;
+}
+
+.edit-company:hover {
+  background-color: #b7791f;
+  /* Darker blue background color on hover */
+}
+
+
+.company-actions button:hover {
+  background-color: #0056b3;
+}
+
+
+.details p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.modal h1 {
+  margin-top: 0;
+}
+
+.modal-footer {
+  margin-top: 20px;
+  text-align: right;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-info {
+  background-color: #17a2b8;
+  color: #fff;
+}
+
+/* Styles for invoice card */
+.invoice-card {
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 1rem;
+    margin: 10px;
+     min-width: calc(33.333% - 20px);
+}
+
+/* Styles for invoice title */
+.invoice-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-top: 1rem;
+}
+
+/* Styles for invoice details */
+.invoice-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+/* Styles for invoice client */
+.invoice-client {
+  color: #666;
+}
+
+/* Styles for invoice actions */
+.invoice-actions {
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.invoice-actions a {
+    margin-right: 20px;
+}
+
+.invoice-dates p {
+    margin: 0;
+    padding: 0;
+}
+
+.cards-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tags {
+    margin-top: auto;
+    margin-bottom: 5px;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #0C4B33;
+    /* Adjust background color */
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-top: 5px;
+    /* Adjust spacing */
+}

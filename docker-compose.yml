@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  web:
+    build:
+      dockerfile: docker/invoices/Dockerfile
+      context: .
+    command: sh -c "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn invoice_project.wsgi:application --bind 0.0.0.0:8000"
+    volumes:
+      - static_volume:/home/app/static
+      - media_volume:/home/app/media
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    restart: always
+  nginx:
+    build:
+      context: docker/nginx
+    restart: unless-stopped
+    volumes:
+      - static_volume:/home/app/static
+      - media_volume:/home/app/media
+      - certbot_etc:/etc/letsencrypt
+      - certbot_var:/var/lib/letsencrypt
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - web
+
+volumes:
+  static_volume:
+  media_volume:
+  certbot_etc:
+  certbot_var:

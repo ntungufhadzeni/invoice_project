@@ -1,0 +1,8 @@
+{
+    "python.autoComplete.extraPaths": [
+
+
+    ],
+    "python.envFile": ".env",
+    "python.analysis.extraPaths": []
+}
