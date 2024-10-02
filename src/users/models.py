@@ -21,8 +21,5 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
-    class Meta:
-        db_table = "Users"
-
     def get_absolute_url(self):
         return "/users/%i/" % self.pk
