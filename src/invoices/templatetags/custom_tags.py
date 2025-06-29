@@ -33,7 +33,7 @@ def format_money(value):
 
 @register.filter()
 def tax_amount(value):
-    return value.total_amount * (value.tax_rate / 100) / (1 + value.tax_rate / 100)
+    return value.total_amount - value.subtotal
 
 
 @register.filter()

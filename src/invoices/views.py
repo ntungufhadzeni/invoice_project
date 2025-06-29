@@ -14,6 +14,8 @@ from .models import Invoice, LineItem
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from .utils import calculate_invoice_total
+
 
 class InvoiceListView(View, LoginRequiredMixin):
     template_name = 'invoices/invoice_list.html'
@@ -68,22 +70,23 @@ def create_invoice(request, pk):
             data['company_id'] = pk
             invoice = Invoice.objects.create(**data)
 
-            total = 0
+            subtotal = 0
             for form in formset:
                 if form.is_valid():
                     description = form.cleaned_data.get('description', '')
                     quantity = form.cleaned_data.get('quantity', 0)
                     rate = form.cleaned_data.get('rate', 0)
-                    if description and quantity and rate:
+                    if description and quantity:
                         amount = float(rate) * float(quantity)
 
-                        total += amount
+                        subtotal += amount
                         LineItem(invoice=invoice,
                                  service_description=description,
                                  quantity=quantity,
                                  rate=rate,
                                  amount=amount).save()
-
+            total = calculate_invoice_total(subtotal, invoice.tax_rate)
+            invoice.subtotal = subtotal
             invoice.total_amount = total
             invoice.balance = total
             invoice.save()
@@ -135,26 +138,31 @@ def edit_invoice(request, pk):
             invoice.customer_phone = form.cleaned_data['customer_phone']
             invoice.billing_address = form.cleaned_data['billing_address']
             invoice.message = form.cleaned_data['message']
-            invoice.tax_rate = form.cleaned_data['tax_rate']
+            invoice.date = form.cleaned_data['date']
+            invoice.due_date = form.cleaned_data['due_date']
+            tax_rate = int(form.cleaned_data['tax_rate'])
+            invoice.tax_rate = tax_rate
             invoice.type = form.cleaned_data['type']
 
             # Update line items for the invoice
-            total = 0
+            subtotal = 0
             line_items.delete()
             for form in formset:
                 if form.is_valid():
                     description = form.cleaned_data.get('description')
                     quantity = form.cleaned_data.get('quantity')
                     rate = form.cleaned_data.get('rate')
-                    if description and quantity and rate:
+                    if description and quantity:
                         amount = float(rate) * float(quantity)
 
-                        total += amount
+                        subtotal += amount
                         LineItem(invoice=invoice,
                                  service_description=description,
                                  quantity=quantity,
                                  rate=rate,
                                  amount=amount).save()
+            total = calculate_invoice_total(subtotal, tax_rate)
+            invoice.subtotal = subtotal
             invoice.total_amount = total
             invoice.balance = total
             invoice.save()

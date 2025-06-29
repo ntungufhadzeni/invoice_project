@@ -77,7 +77,7 @@
           <td colspan="2"></td>
           <td colspan="2">SUBTOTAL</td>
           <td>
-            {{ company.currency|currency_symbol }}{{invoice|sub_total|format_money}}
+            {{ company.currency|currency_symbol }}{{invoice.subtotal|format_money}}
           </td>
         </tr>
         <tr>
