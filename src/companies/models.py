@@ -23,7 +23,7 @@ class Company(models.Model):
     billing_address = models.TextField()
     bank_name = models.CharField(max_length=30)
     account_number = models.CharField(max_length=20)
-    branch_name = models.CharField(max_length=30)
+    branch_name = models.CharField(max_length=30, blank=True, null=True)
     branch_code = models.CharField(max_length=10)
     branch_code_electronic = models.CharField(max_length=10, blank=True, null=True)
     contact_number = models.CharField(max_length=20)

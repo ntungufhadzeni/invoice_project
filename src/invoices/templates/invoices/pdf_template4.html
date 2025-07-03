@@ -48,8 +48,8 @@
         <tr>
             <th class="no" style="background: {{ company.color }};">#</th>
             <th class="desc">DESCRIPTION</th>
-            <th class="qty">QUANTITY</th>
-            <th class="unit">UNIT PRICE</th>
+            <th class="qty">HOURS</th>
+            <th class="unit">RATE/HOUR</th>
             <th class="total" style="background: {{ company.color }};">TOTAL</th>
         </tr>
       </thead>
@@ -112,19 +112,9 @@
                 <span class="mono">{{ company.account_number }}</span>
               </div>
               <div>
-                <span style="font-weight: bold;">Branch Name:</span>
-                <span class="mono">{{ company.branch_name }}</span>
-              </div>
-              <div>
                 <span style="font-weight: bold;">Branch Code:</span>
                 <span class="mono">{{ company.branch_code }}</span>
               </div>
-              {% if company.branch_code_electronic %}
-              <div>
-                <span style="font-weight: bold;">Branch Code (EFT):</span>
-                <span class="mono">{{ company.branch_code_electronic }}</span>
-              </div>
-                {% endif %}
             </div>
           </div>
         </div>

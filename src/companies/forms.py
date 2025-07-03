@@ -55,6 +55,7 @@ class CompanyForm(forms.ModelForm):
     )
     branch_name = forms.CharField(
         label="Branch Name",
+        required=False,
         widget=forms.TextInput(attrs={
             'class': 'input',
             'placeholder': '',

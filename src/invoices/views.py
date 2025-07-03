@@ -187,7 +187,7 @@ def view_invoice(request, pk):
         "lineitem": line_item,
 
     }
-    template = get_template('invoices/pdf_template.html')
+    template = get_template(f'invoices/{invoice.template}')
     html = template.render(context)
     options = {
         'encoding': 'UTF-8',
@@ -225,7 +225,7 @@ def download_invoice(request, pk):
         "lineitem": line_item,
 
     }
-    template = get_template('invoices/pdf_template.html')
+    template = get_template(f'invoices/{invoice.template}')
     html = template.render(context)
     options = {
         'encoding': 'UTF-8',

@@ -23,6 +23,7 @@ class Invoice(models.Model):
     balance = models.DecimalField(max_digits=9, decimal_places=2, blank=True, null=True, default=0.00)
     subtotal = models.DecimalField(max_digits=9, decimal_places=2, blank=True, null=True, default=0.00)
     total_amount = models.DecimalField(max_digits=9, decimal_places=2, blank=True, null=True, default=0.00)
+    template = models.CharField(max_length=10, blank=True, default='pdf_template.html')
     status = models.BooleanField(default=False)
     type = models.CharField(max_length=3, choices=TYPE_CHOICES, default='INV')
 
